@@ -3,6 +3,7 @@ package com.hencoder.hencoderpracticedraw4.practice;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Camera;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -17,6 +18,7 @@ public class Practice11CameraRotateView extends View {
     Bitmap bitmap;
     Point point1 = new Point(200, 200);
     Point point2 = new Point(600, 200);
+    Camera camera = new Camera();
 
     public Practice11CameraRotateView(Context context) {
         super(context);
@@ -38,7 +40,25 @@ public class Practice11CameraRotateView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        canvas.save();
+        camera.save();
+        camera.rotateX(30);
+        camera.applyToCanvas(canvas);
         canvas.drawBitmap(bitmap, point1.x, point1.y, paint);
+        camera.restore();
+        canvas.restore();
+
+        canvas.save();
+        camera.save();
+        camera.rotateY(30);
+        camera.applyToCanvas(canvas);
         canvas.drawBitmap(bitmap, point2.x, point2.y, paint);
+        camera.restore();
+        canvas.restore();
+
+        /**
+         * 未修正旋转中心的写法，camera的操作都是以左上角原点为中心
+         * camera工作原理：Z轴负方向有一个虚拟相机，即位于屏幕上方位置，旋转时是camera对旋转后图形的投影
+         */
     }
 }

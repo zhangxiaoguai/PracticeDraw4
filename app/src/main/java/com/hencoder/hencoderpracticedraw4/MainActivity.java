@@ -13,6 +13,12 @@ import android.view.Menu;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <url>
+ * <p>https://zhuanlan.zhihu.com/p/28300528</p>
+ * <p>Canvas对绘制的辅助</p>
+ * </url>
+ */
 public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager pager;
@@ -70,9 +76,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class PageModel {
-        @LayoutRes int sampleLayoutRes;
-        @StringRes int titleRes;
-        @LayoutRes int practiceLayoutRes;
+        @LayoutRes
+        int sampleLayoutRes;
+        @StringRes
+        int titleRes;
+        @LayoutRes
+        int practiceLayoutRes;
 
         PageModel(@LayoutRes int sampleLayoutRes, @StringRes int titleRes, @LayoutRes int practiceLayoutRes) {
             this.sampleLayoutRes = sampleLayoutRes;

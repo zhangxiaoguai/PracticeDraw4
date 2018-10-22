@@ -72,16 +72,29 @@ public class Practice14FlipboardView extends View {
         int x = centerX - bitmapWidth / 2;
         int y = centerY - bitmapHeight / 2;
 
+        // 1.绘制不动上半部分
         canvas.save();
-
-        camera.save();
-        camera.rotateX(degree);
-        canvas.translate(centerX, centerY);
-        camera.applyToCanvas(canvas);
-        canvas.translate(-centerX, -centerY);
-        camera.restore();
-
+        canvas.clipRect(0, 0, getWidth(), centerY);
         canvas.drawBitmap(bitmap, x, y, paint);
         canvas.restore();
+
+        // 2.绘制翻页下半部分
+        canvas.save();
+        canvas.translate(centerX, centerY);
+        camera.save();
+        camera.rotateX(degree);
+        camera.applyToCanvas(canvas);
+        camera.restore();
+        canvas.translate(-centerX, -centerY);
+        canvas.clipRect(0, centerY, getWidth(), getHeight());
+        canvas.drawBitmap(bitmap, x, y, paint);
+        canvas.restore();
+
+        /**
+         * 绘制下半部分：为canvas添加的操作是倒序的。
+         *
+         * 1.倒序之后是：旋转后裁剪，如Sample
+         * 2.倒序之后是：裁减后旋转，如本Practice
+         */
     }
 }
