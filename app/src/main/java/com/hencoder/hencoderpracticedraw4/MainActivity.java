@@ -14,10 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <url>
- * <p>https://zhuanlan.zhihu.com/p/28300528</p>
+ * <url>https://zhuanlan.zhihu.com/p/28300528</url>
  * <p>Canvas对绘制的辅助</p>
- * </url>
  */
 public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
